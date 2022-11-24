@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.udemycurso.app.eptity.Cliente;
+import com.udemycurso.app.entities.Cliente;
 import com.udemycurso.app.services.IClienteService;
 import com.udemycurso.app.util.paginaitor.PageRender;
 
@@ -29,6 +29,22 @@ public class ClienteController {
 	@Autowired
 	private IClienteService clienteService;
 	
+	//Ver detalle de cliente
+	@GetMapping(value="/ver/{id}")
+	public String ver(@PathVariable(value="id") Long id, Map<String, Object> model, RedirectAttributes flash) {
+		
+		Cliente cliente = clienteService.findOne(id);
+		if(cliente ==null) {
+		flash.addFlashAttribute("error", "El cliente no existe en la base de datos");	
+			return "redirect:/listar";
+		}
+		model.put("cliente", cliente);
+		model.put("titulo", "Detalle cliente: " + cliente.getNombre());
+		
+		return "ver";
+	}
+	
+	//Paginador
 	@GetMapping("/listar")
 	public String listar(@RequestParam(name="page", defaultValue="0")int page,Model model){
 		
@@ -46,6 +62,7 @@ public class ClienteController {
 		return "listar";
 	}
 	
+	//Formulario
 	@RequestMapping(value="/form")
 	//Paso los datos usando Map en vez de Model
 	public String crear(Map<String, Object> model) {
@@ -63,7 +80,7 @@ public class ClienteController {
 		if(id>0){
 			cliente= clienteService.findOne(id);
 			if(cliente == null) {
-				flash.addFlashAttribute("error", "El Id del cliente no existe en la DB!");
+				flash.addFlashAttribute("error", "El Id del cliente no existe en la base de datos");
 				return "redirect:/listar";
 			}
 		}else {
@@ -82,7 +99,7 @@ public class ClienteController {
 			return "form";
 		}
 		
-		String mensajeFlas= (cliente.getId() != null)? "Cliente editado con éxito!!" : "Cliente creado con éxito!!";
+		String mensajeFlas= (cliente.getId() != null)? "¡Cliente editado con éxito!" : "¡Cliente creado con éxito!";
 		
 		clienteService.saved(cliente);
 		flash.addFlashAttribute("success", mensajeFlas);

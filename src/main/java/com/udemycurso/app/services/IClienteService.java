@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.udemycurso.app.eptity.Cliente;
+import com.udemycurso.app.entities.Cliente;
+import com.udemycurso.app.entities.Producto;
 
 public interface IClienteService {
 	
@@ -18,5 +19,7 @@ public interface IClienteService {
 	public Cliente findOne(Long id);
 	
 	public void delete(Long id);
+	
+	public List<Producto> findByNombre(String term);
 
 }

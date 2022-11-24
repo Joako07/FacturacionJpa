@@ -1,4 +1,4 @@
-package com.udemycurso.app.eptity;
+package com.udemycurso.app.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;

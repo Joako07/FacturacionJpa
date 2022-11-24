@@ -1,4 +1,4 @@
-package com.udemycurso.app.eptity;
+package com.udemycurso.app.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
