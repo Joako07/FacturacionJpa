@@ -10,60 +10,81 @@
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body"></div>
 			<h4 class="card-title">
-			<!-- &laquo; esto representa una flecha para volver -->
-			<a class="btn btn-light btn-xs " th:href="@{'/ver/' + ${factura.cliente.id}}" th:text="'&laquo; volver'"></a>
+				<!-- &laquo; esto representa una flecha para volver -->
+				<a class="btn btn-light btn-xs "
+					th:href="@{'/ver/' + ${factura.cliente.id}}"
+					th:text="'&laquo; volver'"></a>
 			</h4>
-		
+
 
 			<form th:action="@{/factura/form/}" th:object="${factura}"
 				method="post">
-				
+
 				<div class="form-group row">
-					<div class="col-sm-1"></div>
-					<label class="col-sm-2 col-form-label" th:text="'Cliente'"></label>
+					<label for="cliente" class="col-sm-2 offset-md-1 col-form-label"
+						th:text="'Cliente'"></label>
 					<div class="col-sm-6">
-				<input th:value="${factura.cliente.nombre}+ ' ' + ${factura.cliente.apellido}" class="form-control" disabled= 'disabled' />
+						<input
+							th:value="${factura.cliente.nombre}+ ' ' + ${factura.cliente.apellido}"
+							class="form-control" disabled='disabled' />
+					</div>
 				</div>
-				</div>
-				
+
 				<div class="form-group row">
-				<div class="col-sm-1"></div>
-					<label class="col-sm-2 col-form-label" th:text="'Descripción'"></label>
+					<label for="descripcion"
+						class="col-sm-2 offset-md-1 col-form-label"
+						th:text="'Descripción'"></label>
 					<div class="col-sm-6">
 						<input type="text" th:field="*{descripcion}" class="form-control" />
 					</div>
 				</div>
 
 				<div class="form-group row">
-				<div class="col-sm-1"></div>
-					<label class="col-sm-2 col-form-label" th:text="'Observaón'"></label>
+					<label for="observacion"
+						class="col-sm-2 offset-md-1 col-form-label"
+						th:text="'Observacion'"></label>
 					<div class="col-sm-6">
 						<textarea th:field="*{observacion}" class="form-control"></textarea>
 					</div>
 				</div>
-				
+
+
 				<div class="form-group row">
-				<div class="col-sm-1"></div>
-					<label class="col-sm-2 col-form-label" th:text="'Buscar producto'"></label>
-					<div class="col-sm-6">
-						<input type="text" name="buscar_producto" id="buscar_producto" class="form-control" />
-					</div>
+				<label th:for="'Buscar producto'" class="col-sm-2 offset-md-1 col-form-label"
+					 th:text="'Buscar producto'"></label>
+				<div class="col-sm-6">
+					<input type="text" name="buscar_producto" id="buscar_producto"
+						class="form-control" />
 				</div>
-
-				<div class="form-group row">	
-					<div class="col-sm-6">
-						<input type="submit" th:value="${titulo}"
-							class="btn btn-secondary" />
-					</div>
-				</div>
-
-			</form>
-
 		</div>
+
+		<table th:replace="factura/plantilla-items :: itemsFactura"></table>
+
+		<table id="cargarItemProductos"
+			class="table table-sm table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Cantidad</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+
+		<div class="form-group row">
+			<div class="col-sm-6">
+				<input type="submit" th:value="${titulo}" class="btn btn-secondary" />
+			</div>
+		</div>
+		
+		</form>
 	</div>
-
-
-<script th:replace="factura/js/autocompletado-producto :: javascript"></script>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:replace="factura/js/autocompletado-producto :: javascript"></script>
 
 </body>
 </html>
