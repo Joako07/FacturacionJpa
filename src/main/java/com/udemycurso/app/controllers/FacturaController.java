@@ -93,7 +93,7 @@ public class FacturaController {
 			return "factura/form";
 		}
 
-		for (int i = 0; i > itemId.length; i++) {
+		for (int i = 0; i < itemId.length; i++) {
 			Producto producto = clienteService.findProductoById(itemId[i]);
 
 			ItemFactura linea = new ItemFactura();

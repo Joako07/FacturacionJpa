@@ -41,7 +41,7 @@ public class Factura implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Cliente cliente;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	//Al ser la relación en una sola dirección se debe crear la clave foránea.
 	@JoinColumn(name = "factura_id")
 	private List<ItemFactura> items;
