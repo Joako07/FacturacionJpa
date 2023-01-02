@@ -2,13 +2,34 @@ package com.udemycurso.app;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class SpringSecurityConfig {
+public class SpringSecurityConfig  {
+	
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+ 
+		//Dando seguridad a las rutas. Le asignamos permisos a los diferentes usuarios.
+		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/listar").permitAll()
+				.antMatchers("/ver/**").hasAnyRole("USER")
+				.antMatchers("/uploads/**").hasAnyRole("USER")
+				.antMatchers("/form/**").hasAnyRole("ADMIN")
+				.antMatchers("/eliminar/**").hasAnyRole("ADMIN")
+				.antMatchers("/factura/**").hasAnyRole("ADMIN")
+				.anyRequest().authenticated()
+				.and()
+				.formLogin().permitAll()
+				.and()
+				.logout().permitAll();
+ 
+		return http.build();
+	}
 
 	@Bean
 	public static BCryptPasswordEncoder passwordEncoder() {
