@@ -24,14 +24,17 @@ public class SpringSecurityConfig  {
 				.antMatchers("/factura/**").hasAnyRole("ADMIN")
 				.anyRequest().authenticated()
 				.and()
-				.formLogin().loginPage("/login")
-				.permitAll()
+					.formLogin().loginPage("/login")
+					.permitAll()
 				.and()
-				.logout().permitAll();
+				.logout().permitAll()
+				.and()
+				.exceptionHandling().accessDeniedPage("/error_403");
  
 		return http.build();
 	}
 
+	//codigficar la password
 	@Bean
 	public static BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
