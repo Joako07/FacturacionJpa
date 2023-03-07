@@ -1,5 +1,6 @@
 package com.udemycurso.app;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,8 +10,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.udemycurso.app.auth.handler.LoginSuccesHandler;
+
 @Configuration
 public class SpringSecurityConfig  {
+	
+	@Autowired
+	private LoginSuccesHandler successHandler;
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -24,7 +30,9 @@ public class SpringSecurityConfig  {
 				.antMatchers("/factura/**").hasAnyRole("ADMIN")
 				.anyRequest().authenticated()
 				.and()
-					.formLogin().loginPage("/login")
+					.formLogin()
+						.successHandler(successHandler)
+						.loginPage("/login")
 					.permitAll()
 				.and()
 				.logout().permitAll()
