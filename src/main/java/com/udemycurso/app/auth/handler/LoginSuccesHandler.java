@@ -1,4 +1,4 @@
- package com.udemycurso.app.auth.handler;
+package com.udemycurso.app.auth.handler;
 
 import java.io.IOException;
 
@@ -18,18 +18,16 @@ public class LoginSuccesHandler extends SimpleUrlAuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		
+
 		SessionFlashMapManager flashMapManager = new SessionFlashMapManager();
-		
+
 		FlashMap flashMap = new FlashMap();
-		
+
 		flashMap.put("success", "Ha iniciado sesión con éxito!");
-		
+
 		flashMapManager.saveOutputFlashMap(flashMap, request, response);
-		
+
 		super.onAuthenticationSuccess(request, response, authentication);
 	}
 
-	
-	
 }
