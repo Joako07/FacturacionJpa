@@ -23,6 +23,7 @@ public class SpringSecurityConfig  {
  
 		//Dando seguridad a las rutas. Le asignamos permisos a los diferentes usuarios.
 		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/listar").permitAll()
+				//Estos permisos los podes dar con etiquetas en los controladores agregando el beans @EnabledMethodSecurity en esta clase
 				.antMatchers("/ver/**").hasAnyRole("USER")
 				.antMatchers("/uploads/**").hasAnyRole("USER")
 				.antMatchers("/form/**").hasAnyRole("ADMIN")
