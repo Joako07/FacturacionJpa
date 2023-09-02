@@ -22,7 +22,7 @@ public class SpringSecurityConfig  {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
  
 		//Dando seguridad a las rutas. Le asignamos permisos a los diferentes usuarios.
-		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/listar").permitAll()
+		http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/listar","/locale").permitAll()
 				//Estos permisos los podes dar con etiquetas en los controladores agregando el beans @EnabledMethodSecurity en esta clase
 				.antMatchers("/ver/**").hasAnyRole("USER")
 				.antMatchers("/uploads/**").hasAnyRole("USER")
