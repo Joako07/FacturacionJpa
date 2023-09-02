@@ -1,6 +1,7 @@
 package com.udemycurso.app.controllers;
 
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -8,6 +9,7 @@ import javax.validation.Valid;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +38,10 @@ public class ClienteController {
 
 	@Autowired
 	private IClienteService clienteService;
+	
+	//Atravez de esto obtenemos el idioma y lo pasamos a /listar
+	@Autowired
+	private MessageSource messageSource;
 
 	// Ver detalle de cliente
 	@GetMapping(value = "/ver/{id}")
@@ -55,7 +61,7 @@ public class ClienteController {
 	// Paginador
 	@GetMapping(value = { "/listar", "/" })
 	public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model,
-			Authentication authentication) {
+			Authentication authentication, Locale locale) {
 
 		// Obtener el nombre usuario uando inyección de dependencia. Inyectando
 		// authentication como argumento en el metodo "listar" de arriba
@@ -87,7 +93,7 @@ public class ClienteController {
 		PageRender<Cliente> pageRender = new PageRender<>("/listar", clientes);
 
 		// Paso todo a las vista
-		model.addAttribute("titulo", "listado de clientes");
+		model.addAttribute("titulo", messageSource.getMessage("text.cliente.listar.titulo", null, locale));
 		model.addAttribute("clientes", clientes);
 		model.addAttribute("page", pageRender);
 		return "listar";
