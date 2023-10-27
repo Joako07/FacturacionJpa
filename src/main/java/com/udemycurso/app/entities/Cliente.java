@@ -23,6 +23,10 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 //Con @Table le das un nombre a la tabla. Si se va llamar igual que en la db no hace falta
 @Table(name="clientes")
@@ -50,10 +54,15 @@ public class Cliente implements Serializable{
 	//@Temporal es para indicar el formato de la fecha
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss") //PAra que el archivo Json la muestre con este formato
 	private Date createAt;
 	
 	//Al ser una relación en ambas direcciones usamos el "mappedBy" este genera las claves foráneas autmaticamente. 
 	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	//Hago que Json lo ignore para que no me genere un loop cuando crea el archivo
+	//@JsonIgnore
+	//Si no se usa JsonManagedReference(Se pone a lo que queres mostrar) y JsonBackReference (Se pone a la parte que no queres mostrar) en las relaciones entre entidades 
+	@JsonManagedReference
 	private List<Factura> facturas;
 	
 	public Cliente() {

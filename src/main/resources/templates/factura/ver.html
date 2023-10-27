@@ -16,7 +16,7 @@
 					<a th:href="@{'/ver/' + ${factura.cliente.id}}"
 						class="btn btn-light btn-xs">&laquo; volver</a>
 						<!-- Este es el boton para generar el pdf. La url al recibir el parametro "pdf" sabe que debe generar el pdf si no abre la vista ver html-->
-						<a class ="btn btn-danger btn-xs float-rigth" th:href="@{'/factura/ver/' + ${factura.id}(format=pdf)}">PDF</a>
+						<a class ="btn btn-danger btn-xs float-right mx-2" th:href="@{'/factura/ver/' + ${factura.id}(format=pdf)}">PDF</a>
 				</h4>
 
 				<!-- Datos del cliente -->

@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 @Entity
@@ -22,6 +25,7 @@ public class ItemFactura implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "producto_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"}) //Es para que Json ignore ciertos atributos
 	private Producto producto;
 
 	public Long getId() {

@@ -21,6 +21,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="facturas")
 public class Factura implements Serializable {
@@ -39,6 +41,8 @@ public class Factura implements Serializable {
 	private Date createAt;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	//se usa JsonManagedReference(Se pone a lo que queres mostrar) y JsonBackReference (Se pone a la parte que no queres mostrar) en las relaciones entre entidades
+	@JsonBackReference
 	private Cliente cliente;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
