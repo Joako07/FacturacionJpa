@@ -40,8 +40,7 @@ public class MvcConfig implements WebMvcConfigurer{
 	//Registro el interceptor en la aplicación
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		// TODO Auto-generated method stub
 		registry.addInterceptor(localeChangeInterceptor());
 	}
-	
+
 }
