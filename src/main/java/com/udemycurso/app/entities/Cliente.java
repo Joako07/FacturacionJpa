@@ -57,7 +57,6 @@ public class Cliente implements Serializable{
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss") //PAra que el archivo Json la muestre con este formato
 	private Date createAt;
 	
-	//Al ser una relación en ambas direcciones usamos el "mappedBy" este genera las claves foráneas autmaticamente. 
 	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	//Hago que Json lo ignore para que no me genere un loop cuando crea el archivo
 	//@JsonIgnore
