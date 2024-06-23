@@ -4,8 +4,8 @@
 <h3>Credenciales: <h3>
 <ul>
   <li>
-    <h3>ADMIN</h3> 
-    <h2>Usuario: admin - Password: 123456 </h2>
+    <h4>ADMIN</h4> 
+    <h5>Usuario: admin - Password: 123456 </h5>
   </li>
     <li>
     <h3>USER</h3> 
