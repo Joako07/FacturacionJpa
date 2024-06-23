@@ -1,15 +1,15 @@
 # FacturacionJpa
 
-<h3>Link:localhost:8080/login<h3>
-<h3>Credenciales: <h3>
+<h2>Link:localhost:8080/login<h2>
+<h2>Credenciales: <h2>
 <ul>
   <li>
-    <h4>ADMIN</h4> 
+    <h5>ADMIN</h5> 
     <h5>Usuario: admin - Password: 123456 </h5>
   </li>
     <li>
-    <h3>USER</h3> 
-    <h2>Usuario: joaquin - Password: 3493 </h2>
+    <h5>USER</h5> 
+    <h5>Usuario: joaquin - Password: 3493 </h5>
   </li>
 </ul>       
-<h3>Base de datos: db_springboot <h3>
+<h2>Base de datos: db_springboot <h2>
