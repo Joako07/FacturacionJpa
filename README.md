@@ -1,5 +1,7 @@
 # FacturacionJpa
-<p>FaturacionJpa es una aplicación monolítica desarrollada con la arquitectura MVC utilizando Spring Boot, JPA y plantillas Thymeleaf para las vistas.</p>
+<p>FacturacionJpa es una aplicación monolítica desarrollada bajo el patrón de arquitectura MVC (Modelo-Vista-Controlador) utilizando Spring Boot como framework principal. La aplicación permite gestionar funcionalidades relacionadas con un sistema de facturación de manera estructurada y eficiente.
+
+Para la persistencia de datos, se utilizó JPA (Java Persistence API), lo que facilita la interacción con la base de datos mediante una capa de abstracción orientada a objetos. Las vistas fueron construidas con Thymeleaf.</p>
 
 <h2>Link:localhost:8080/login<h2>
 <h2>Credenciales: <h2>
